@@ -1,2 +1,2 @@
 # habitual-box
-单纯的Vue构建的前端项目
+用于对接business-habitual的后端api项目
