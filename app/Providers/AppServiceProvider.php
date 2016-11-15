@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Api\Extensions\CustomScout\Engine\CustomElasticsearchEngine;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\EngineManager;
+use Elasticsearch\ClientBuilder as Elasticsearch;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        resolve(EngineManager::class)->extend('customElasticSearch', function () {
+            return new CustomElasticSearchEngine(
+                Elasticsearch::fromConfig(config('scout.elasticsearch.config')),
+                config('scout.elasticsearch.index'));
+        });
     }
 
     /**

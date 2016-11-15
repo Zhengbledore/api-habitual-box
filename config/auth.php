@@ -38,13 +38,18 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'customs',
         ],
 
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+//        'custom' => [
+//            'driver' => 'session',
+//            'provider' => 'customs',
+//        ],
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+         'customs' => [
+             'driver' => 'weChat',
+             'model' => App\User::class,
+         ],
 
         // 'users' => [
         //     'driver' => 'database',
